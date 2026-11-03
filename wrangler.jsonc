@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "worker-repo",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-28",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGINS": ""
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "ATHENA_DATA", "class_name": "AthenaDataStore" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["AthenaDataStore"] }
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *", "30 11 * * *"]
+  }
+}
